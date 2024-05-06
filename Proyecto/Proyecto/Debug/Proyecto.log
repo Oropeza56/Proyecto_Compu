@@ -1,0 +1,12 @@
+﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(531,5): warning MSB8028: El directorio intermedio (Debug\) contiene archivos compartidos de otro proyecto (P7.vcxproj, P8.vcxproj). Esto puede dar lugar a un comportamiento incorrecto de limpieza y recompilación.
+  proyecto.cpp
+C:\Users\Max\Documents\LabCGeiHC 2024-2\Proyecto\Proyecto\Window.h(15,36): warning C4244: 'return': conversión de 'GLint' a 'GLfloat'; posible pérdida de datos
+  (compilando archivo de origen "proyecto.cpp")
+  
+C:\Users\Max\Documents\LabCGeiHC 2024-2\Proyecto\Proyecto\Window.h(16,37): warning C4244: 'return': conversión de 'GLint' a 'GLfloat'; posible pérdida de datos
+  (compilando archivo de origen "proyecto.cpp")
+  
+C:\Users\Max\Documents\LabCGeiHC 2024-2\Proyecto\Proyecto\proyecto.cpp(279,15): warning C4244: 'inicializando': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+C:\Users\Max\Documents\LabCGeiHC 2024-2\Proyecto\Proyecto\proyecto.cpp(281,33): warning C4244: '+=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+LINK : warning LNK4098: la biblioteca predeterminada'MSVCRT' entra en conflicto con otras bibliotecas; use la biblioteca /NODEFAULTLIB:biblioteca
+  Proyecto.vcxproj -> C:\Users\Max\Documents\LabCGeiHC 2024-2\Proyecto\Debug\Proyecto.exe
