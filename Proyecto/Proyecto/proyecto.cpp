@@ -42,6 +42,16 @@ bool keyZPressed = false;
 bool luz1 = true;
 bool luz2 = true;
 
+//vehículo motorizado JUGGERNAUT
+float movJuggernautX, movJuggernautZ;
+float movJuggernautOffset;
+float rotLlantaJuggernaut;
+float rotLlantaJuggernautOffset;
+float rotVehiculo;
+float rotVehiculoOffset;
+bool rot1, rot2, rot3, rot4, rot5, rot6, ciclo_J;
+bool bandera_J;
+
 
 Window mainWindow;
 std::vector<Mesh*> meshList;
@@ -55,6 +65,29 @@ Model casa_Kamino_M;
 Texture dirtTexture;
 Texture pisoTexture;
 Texture aguaTexture;
+Texture cespedTexture;
+
+
+//--TEXTURAS MODELOS------
+// 
+//Vehículo -Terrestre- Juggernaut
+Model juggernaut_M;
+Model juggernaut_llanta1_M;
+Model juggernaut_llanta2_M;
+Model juggernaut_llanta3_M;
+Model juggernaut_llanta4_M;
+Model juggernaut_llanta5_M;
+Model juggernaut_llanta6_M;
+Model juggernaut_llanta7_M;
+Model juggernaut_llanta8_M;
+Model juggernaut_llanta9_M;
+Model juggernaut_llanta10_M;
+Model juggernaut_torreta_lateral_M;
+Model juggernaut_torreta_frontal_M;
+Model juggernaut_torreta_trasera_M;
+
+//lampara
+Model lampara_M;
 
 Skybox skybox;
 
@@ -203,7 +236,11 @@ int main()
 	CreateObjects();
 	CreateShaders();
 
-	camera = Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -60.0f, 0.0f, 0.8f, 0.8f);
+	camera = Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -60.0f, 0.0f, 1.0f, 1.0f);
+
+	//----------------LAMPARA----------------------------
+	lampara_M = Model();
+	lampara_M.LoadModel("Models/lampara.obj");
 
 	//---------------------KAMINO------------------
 	casa_Kamino_M = Model();
@@ -215,15 +252,60 @@ int main()
 	pisoTexture.LoadTextureA();
 	aguaTexture = Texture("Textures/agua.tga");
 	aguaTexture.LoadTextureA();
+	cespedTexture = Texture("Textures/cesped.tga");
+	cespedTexture.LoadTextureA();
+
+	//----------------JUGGERNAUT----------------------------
+	juggernaut_M = Model();
+	juggernaut_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut.obj");
+
+	juggernaut_llanta1_M = Model();
+	juggernaut_llanta1_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-llanta1.obj");
+
+	juggernaut_llanta2_M = Model();
+	juggernaut_llanta2_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-llanta2.obj");
+
+	juggernaut_llanta3_M = Model();
+	juggernaut_llanta3_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-llanta3.obj");
+
+	juggernaut_llanta4_M = Model();
+	juggernaut_llanta4_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-llanta4.obj");
+
+	juggernaut_llanta5_M = Model();
+	juggernaut_llanta5_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-llanta5.obj");
+
+	juggernaut_llanta6_M = Model();
+	juggernaut_llanta6_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-llanta6.obj");
+
+	juggernaut_llanta7_M = Model();
+	juggernaut_llanta7_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-llanta7.obj");
+
+	juggernaut_llanta8_M = Model();
+	juggernaut_llanta8_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-llanta8.obj");
+
+	juggernaut_llanta9_M = Model();
+	juggernaut_llanta9_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-llanta9.obj");
+
+	juggernaut_llanta10_M = Model();
+	juggernaut_llanta10_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-llanta10.obj");
+
+	juggernaut_torreta_lateral_M = Model();
+	juggernaut_torreta_lateral_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-torreta-lateral.obj");
+
+	juggernaut_torreta_frontal_M = Model();
+	juggernaut_torreta_frontal_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-torreta-frontal.obj");
+
+	juggernaut_torreta_trasera_M = Model();
+	juggernaut_torreta_trasera_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-torreta-trasera.obj");
 
 
 	std::vector<std::string> skyboxFaces;
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_lf.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_dn.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_up.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_bk.tga");
-	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_ft.tga");
+	skyboxFaces.push_back("Textures/Skybox/xochimilco_rt.jpg");
+	skyboxFaces.push_back("Textures/Skybox/xochimilco_lf.jpg");
+	skyboxFaces.push_back("Textures/Skybox/xochimilco_dn.jpg");
+	skyboxFaces.push_back("Textures/Skybox/xochimilco_up.jpg");
+	skyboxFaces.push_back("Textures/Skybox/xochimilco_bk.jpg");
+	skyboxFaces.push_back("Textures/Skybox/xochimilco_ft.jpg");
 
 	skybox = Skybox(skyboxFaces);
 
@@ -236,22 +318,19 @@ int main()
 		0.0f, 0.0f, -1.0f);   //0,0,-1
 
 	//contador de luces puntuales
-	
 	unsigned int pointLightCount = 0;
-	/*
 	// Ligada al modelo de lampara
 	pointLights[0] = PointLight(1.0f, 1.0f, 1.0f,
 		0.5f, 0.3f,
 		0.0f, 0.0f, 0.0f,
 		0.2f, 0.01f, 0.001f);
 	pointLightCount++;
-	*/
 
 	//-----------------------------------------------
 
 	unsigned int spotLightCount = 0;
 	//linterna
-	/*
+	//*
 	spotLights[0] = SpotLight(1.0f, 1.0f, 1.0f,
 		0.0f, 2.0f,
 		0.0f, 0.0f, 0.0f,
@@ -259,12 +338,32 @@ int main()
 		1.0f, 0.0f, 0.0f,
 		5.0f);
 	spotLightCount++;
-	*/
+	//*/
 
 	//se crean mas luces puntuales y spotlight 
 	//...
 
 	//*/
+
+	//------------giro para el vehículo motorizado JUGGERNAUT----------------------
+	movJuggernautX = 0.0f;
+	movJuggernautZ = 0.0f;
+	movJuggernautOffset = 10.0f; //velocidad del vehiculo
+	rotLlantaJuggernaut = 0.0f;
+	rotLlantaJuggernautOffset = 10.0f;
+
+	rotVehiculo = 0.0;
+	rotVehiculoOffset = 1.0f;
+
+	rot1 = false;
+	rot2 = false;
+	rot3 = false;
+	rot4 = false;
+	rot5 = false;
+	rot6 = false;
+	ciclo_J = false;
+	bandera_J = false;
+
 
 	GLuint uniformProjection = 0, uniformModel = 0, uniformView = 0, uniformEyePosition = 0,
 		uniformSpecularIntensity = 0, uniformShininess = 0;
@@ -272,6 +371,21 @@ int main()
 	glm::mat4 projection = glm::perspective(45.0f, (GLfloat)mainWindow.getBufferWidth() / mainWindow.getBufferHeight(), 0.1f, 1000.0f);
 	
 	glm::mat4 model(1.0);
+	glm::mat4 model_piso(1.0);
+	glm::mat4 model_lamp(1.0);
+	glm::mat4 model_sable(1.0);
+	glm::mat4 model_juggernaut(1.0);
+	glm::mat4 model_juggernaut_art1(1.0);
+	glm::mat4 model_juggernaut_art2(1.0);
+	glm::mat4 model_juggernaut_art3(1.0);
+	glm::mat4 model_juggernaut_art4(1.0);
+	glm::mat4 model_juggernaut_art5(1.0);
+	glm::mat4 model_juggernaut_art6(1.0);
+	glm::mat4 model_juggernaut_art7(1.0);
+	glm::mat4 model_juggernaut_art8(1.0);
+	glm::mat4 model_juggernaut_art9(1.0);
+	glm::mat4 model_juggernaut_art10(1.0);
+	glm::mat4 model_juggernaut_art11(1.0);
 
 	////Loop mientras no se cierra la ventana
 	while (!mainWindow.getShouldClose())
@@ -305,26 +419,22 @@ int main()
 		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera.calculateViewMatrix()));
 		glUniform3f(uniformEyePosition, camera.getCameraPosition().x, camera.getCameraPosition().y, camera.getCameraPosition().z);
 
-
-		//información al shader de fuentes de iluminación
-		shaderList[0].SetDirectionalLight(&mainLight);
-
-		
 		// luz ligada a la cámara de tipo flash
 		//sirve para que en tiempo de ejecución (dentro del while) se cambien propiedades de la luz
 		glm::vec3 lowerLight = camera.getCameraPosition();
 		lowerLight.y -= 0.3f;
 		spotLights[0].SetFlash(lowerLight, camera.getCameraDirection());   //comentar y ver el resultado
 		
+		//información al shader de fuentes de iluminación
+		shaderList[0].SetDirectionalLight(&mainLight);
 
-		
 		glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f);
 
 		//------------------------------PISO--------------------------------
-		
+		//*
 		model = glm::mat4(1.0);
 		model = glm::translate(model, glm::vec3(0.0f, -1.0f, 0.0f));
-		model = glm::scale(model, glm::vec3(240.0f, 1.0f, 240.0f));
+		model = glm::scale(model, glm::vec3(30.0f, 1.0f, 30.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		
@@ -332,8 +442,18 @@ int main()
 		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
 		meshList[2]->RenderMesh();
 		
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(600.0f, -1.0f, 0.0f));
+		model_piso = model;
+		model = glm::scale(model, glm::vec3(30.0f, 1.0f, 30.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		cespedTexture.UseTexture();
+		Material_opaco.UseMaterial(uniformSpecularIntensity, uniformShininess);
+		meshList[2]->RenderMesh();
+
 		//glBindTexture(GL_TEXTURE_2D, 0); // Desactivar textura
-		
+		//*/
 		//-------------------------KAMINO-------------------------------------
 		model = glm::mat4(1.0);
 		model = glm::translate(model, glm::vec3(0.0f, 50.0f, 0.0f));
@@ -341,6 +461,243 @@ int main()
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		casa_Kamino_M.RenderModel();
+
+		//----------------LAMPARA----------------------------
+		if (true) {
+			model = model_piso;
+			model = glm::translate(model, glm::vec3(5.0f, 0.0f, 6.0));
+			model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
+			model_lamp = model;
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			lampara_M.RenderModel();
+
+			// Obtener la posición de la lampara después de renderizarla
+			glm::vec3 lampPos = glm::vec3(model[3][0] + 0.0f, model[3][1] + 22.0f, model[3][2] + 0.0f); // <- con esto hacemos que la luz siga al modelo
+			// Configurar la posición y la dirección de la luz
+			pointLights[0].SetPosition(lampPos);
+		}
+
+		//----------------VEHÍCULO MOTORIZADO -> JUGGERNAUT----------------------------
+		if (true) {
+			//Cabina principal
+			model = model_piso;
+			model = glm::translate(model, glm::vec3(-50.0f, 4.5f, -40.0));
+			model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
+			model = glm::translate(model, glm::vec3(movJuggernautX, 0.0f, movJuggernautZ));
+			model = glm::rotate(model, rotVehiculo * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+			model_juggernaut = model;
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_M.RenderModel();
+
+			//Llantas izquierdas
+			model = model_juggernaut;
+			model = glm::translate(model, glm::vec3(-150.0f, -5.5f, 0.0));
+			model_juggernaut_art1 = model;
+			model = glm::rotate(model, rotLlantaJuggernaut * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_llanta1_M.RenderModel();
+
+			model = model_juggernaut_art1;
+			model = glm::translate(model, glm::vec3(0.0f, 0.0f, -102.0));
+			model_juggernaut_art2 = model;
+			model = glm::rotate(model, rotLlantaJuggernaut * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_llanta2_M.RenderModel();
+
+			model = model_juggernaut_art2;
+			model = glm::translate(model, glm::vec3(0.0f, 0.0f, -102.0));
+			model_juggernaut_art3 = model;
+			model = glm::rotate(model, rotLlantaJuggernaut * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_llanta3_M.RenderModel();
+
+			model = model_juggernaut_art3;
+			model = glm::translate(model, glm::vec3(0.0f, 0.0f, -102.0));
+			model_juggernaut_art4 = model;
+			model = glm::rotate(model, rotLlantaJuggernaut * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_llanta1_M.RenderModel();
+
+			model = model_juggernaut_art4;
+			model = glm::translate(model, glm::vec3(0.0f, 0.0f, -102.0));
+			model = glm::rotate(model, rotLlantaJuggernaut * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_llanta2_M.RenderModel();
+
+			//Lantas derechas
+			model = model_juggernaut;
+			model = glm::translate(model, glm::vec3(150.0f, 0.0f, 0.0));
+			model_juggernaut_art5 = model;
+			model = glm::rotate(model, rotLlantaJuggernaut * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_llanta6_M.RenderModel();
+
+			model = model_juggernaut_art5;
+			model = glm::translate(model, glm::vec3(0.0f, 0.0f, -102.0));
+			model_juggernaut_art6 = model;
+			model = glm::rotate(model, rotLlantaJuggernaut * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_llanta7_M.RenderModel();
+
+			model = model_juggernaut_art6;
+			model = glm::translate(model, glm::vec3(0.0f, 0.0f, -102.0));
+			model_juggernaut_art7 = model;
+			model = glm::rotate(model, rotLlantaJuggernaut * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_llanta8_M.RenderModel();
+
+			model = model_juggernaut_art7;
+			model = glm::translate(model, glm::vec3(0.0f, 0.0f, -102.0));
+			model_juggernaut_art8 = model;
+			model = glm::rotate(model, rotLlantaJuggernaut * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_llanta6_M.RenderModel();
+
+			model = model_juggernaut_art8;
+			model = glm::translate(model, glm::vec3(0.0f, 0.0f, -102.0));
+			model = glm::rotate(model, rotLlantaJuggernaut * toRadians, glm::vec3(1.0f, 0.0f, 0.0f));
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_llanta10_M.RenderModel();
+
+			//Torretas
+
+			model = model_juggernaut;
+			model = glm::translate(model, glm::vec3(0.0f, 150.0f, -12.0));
+			model_juggernaut_art9 = model;
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_torreta_frontal_M.RenderModel();
+
+			model = model_juggernaut_art9;
+			model = glm::translate(model, glm::vec3(1.0f, 10.0f, -247.0));
+			model_juggernaut_art10 = model;
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_torreta_trasera_M.RenderModel();
+
+			model = model_juggernaut_art10;
+			model = glm::translate(model, glm::vec3(-92.0f, -75.0f, -22.0));
+			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+			juggernaut_torreta_lateral_M.RenderModel();
+
+		}
+
+
+		//------------------------MOVIMIENTO VEHÍCULO MOTORIZADO - JUGGERNAUT--------------------------
+		if (true) {
+			if (!ciclo_J)
+			{
+				if (movJuggernautZ < 2950.0f && !bandera_J)
+				{
+					movJuggernautZ += movJuggernautOffset * deltaTime;
+					//printf("avanza%f \n ",movCoche);
+					rotLlantaJuggernaut += rotLlantaJuggernautOffset * deltaTime;
+					std::cout << "1era PosicionZ: " << movJuggernautZ << std::endl;
+					if (movJuggernautZ >= 5000.0f) {
+						movJuggernautZ = 0;
+					}
+					if (movJuggernautZ >= 2945.0f) {
+						std::cout << "-----Limite SuperiorZ: " << movJuggernautZ << std::endl;
+						bandera_J = true; //Bandera para evitar que se regrese a este punto mas adelante
+						rot1 = true;
+					}
+				}
+				else if (rotVehiculo <= 90.0 && rot1) {
+					rotVehiculo += rotVehiculoOffset * deltaTime;
+					std::cout << "Angulo1: " << rotVehiculo << std::endl;
+					if (rotVehiculo >= 90.0) {
+						rot1 = false;
+					}
+				}
+				else if (movJuggernautX <= 3000.0f && !rot1 && !rot2) {
+					movJuggernautX += movJuggernautOffset * deltaTime;
+					rotLlantaJuggernaut += rotLlantaJuggernautOffset * deltaTime;
+					std::cout << "PosicionX: " << movJuggernautX << std::endl;
+					if (movJuggernautX >= 3000.0f) {
+						std::cout << "-----Limite SuperiorX: " << movJuggernautX << std::endl;
+						rot2 = true;
+					}
+				}
+				else if (rotVehiculo <= 180.0 && rot2) {
+					rotVehiculo += rotVehiculoOffset * deltaTime;
+					std::cout << "Angulo2: " << rotVehiculo << std::endl;
+					if (rotVehiculo >= 180.0) {
+						std::cout << "Exito FINAL 1 ----------------- " << std::endl;
+						rot2 = false;
+					}
+				}
+				else if (movJuggernautZ > -2150.0f) {
+					movJuggernautZ -= movJuggernautOffset * deltaTime;
+					rotLlantaJuggernaut += rotLlantaJuggernautOffset * deltaTime;
+					if (movJuggernautZ <= -2145.0f) {
+						std::cout << "-----Limite 2 InferiorZ: " << movJuggernautZ << std::endl;
+						rot3 = true;
+					}
+				}
+				else if (rotVehiculo >= 0.0 && rot3) {
+					rotVehiculo -= rotVehiculoOffset * deltaTime;
+					std::cout << "Angulo3: " << rotVehiculo << std::endl;
+					if (rotVehiculo <= 0.0) {
+						rot3 = false;
+						ciclo_J = true;
+					}
+				}
+			}
+			else
+			{
+				if (movJuggernautZ < 2950.0f && bandera_J) {
+					movJuggernautZ += movJuggernautOffset * deltaTime;
+					rotLlantaJuggernaut += rotLlantaJuggernautOffset * deltaTime;
+					std::cout << "2da PosicionZ: " << movJuggernautZ << std::endl;
+					if (movJuggernautZ >= 2945.0f) {
+						std::cout << "-----Limite 2 SuperiorZ: " << movJuggernautZ << std::endl;
+						rot4 = true;
+						bandera_J = false;
+					}
+				}
+				else if (rotVehiculo >= -90.0f && rot4) {
+					rotVehiculo -= rotVehiculoOffset * deltaTime;
+					std::cout << "Angulo4: " << rotVehiculo << std::endl;
+					if (rotVehiculo <= -90.0f) {
+						rot4 = false;
+					}
+				}
+				else if (movJuggernautX >= 0.0f) {
+					movJuggernautX -= movJuggernautOffset * deltaTime;
+					rotLlantaJuggernaut += rotLlantaJuggernautOffset * deltaTime;
+					std::cout << "PosicionX: " << movJuggernautX << std::endl;
+					if (movJuggernautX <= 0.0f) {
+						std::cout << "-----Limite 2 InferiorX: " << movJuggernautX << std::endl;
+						rot5 = true;
+					}
+				}
+				else if (rotVehiculo >= -180.0 && rot5) {
+					rotVehiculo -= rotVehiculoOffset * deltaTime;
+					std::cout << "Angulo5: " << rotVehiculo << std::endl;
+					if (rotVehiculo <= -180.0) {
+						rot5 = false;
+					}
+				}
+				else if (movJuggernautZ > -2150.0f && !bandera_J) {
+					movJuggernautZ -= movJuggernautOffset * deltaTime;
+					rotLlantaJuggernaut += rotLlantaJuggernautOffset * deltaTime;
+					if (movJuggernautZ <= -2145.0f) {
+						std::cout << "-----Limite 3 InferiorZ: " << movJuggernautZ << std::endl;
+						rot6 = true;
+					}
+				}
+				else if (rotVehiculo <= 0.0 && rot6) {
+					rotVehiculo += rotVehiculoOffset * deltaTime;
+					std::cout << "Angulo3: " << rotVehiculo << std::endl;
+					if (rotVehiculo >= 0.0) {
+						rot6 = false;
+						ciclo_J = false;
+					}
+				}
+			}
+		}
+
+
+		shaderList[0].SetPointLights(pointLights, pointLightCount);
+
 
 		glUseProgram(0);
 		mainWindow.swapBuffers();

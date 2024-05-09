@@ -1,0 +1,137 @@
+# Blender 4.1.0 MTL File: 'jugguernaut.blend'
+# www.blender.org
+
+newmtl Cockpit
+Ka 0.200000 0.200000 0.200000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd textures-max/Juggernaut/Cockpit_Base_Color.png
+map_Ns textures-max/Juggernaut/Cockpit_Roughness.png
+
+newmtl Comminication
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures-max/Juggernaut/Comminication_Base_Color.png
+map_Ns textures-max/Juggernaut/Comminication_Roughness.png
+map_refl textures-max/Juggernaut/Comminication_Metallic.png
+
+newmtl Communication002
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures-max/Juggernaut/Communication002_Base_Color.png
+map_Ns textures-max/Juggernaut/Communication002_Roughness.png
+map_refl textures-max/Juggernaut/Communication002_Metallic.png
+
+newmtl Handle
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures-max/Juggernaut/Handle_Base_Color.png
+
+newmtl MainBody
+Ka 0.200000 0.200000 0.200000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd textures-max/Juggernaut/MainBody_Base_Color.png
+map_Ns textures-max/Juggernaut/MainBody_Roughness.png
+
+newmtl MiddleBase
+Ka 0.200000 0.200000 0.200000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd textures-max/Juggernaut/MiddleBase_Base_Color.png
+map_Ns textures-max/Juggernaut/MiddleBase_Metallic.png
+
+newmtl MiddleBase002
+Ka 0.200000 0.200000 0.200000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd textures-max/Juggernaut/MiddleBase002_Base_Color.png
+map_Ns textures-max/Juggernaut/MiddleBase002_Roughness.png
+
+newmtl RootNode
+Ns 640.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.500000 0.500000 0.500000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 0.000000
+illum 9
+
+newmtl Shockabsorbers
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures-max/Juggernaut/Shockabsorbers_Base_Color.png
+map_refl textures-max/Juggernaut/Shockabsorbers_Metallic.png
+
+newmtl TurretBaseBig
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures-max/Juggernaut/TurretBaseBig_Base_Color.png
+map_Ns textures-max/Juggernaut/TurretBaseBig_Roughness.png
+map_refl textures-max/Juggernaut/TurretBaseBig_Metallic.png
+
+newmtl WheelHolder
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures-max/Juggernaut/WheelHolder_Base_Color.png
+
+newmtl WheelHolderMiddle
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures-max/Juggernaut/WheelHolderMiddle_Base_Color.png
+
+newmtl WheelPlates
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd textures-max/Juggernaut/WheelPlates_Base_Color.png
+map_refl textures-max/Juggernaut/WheelPlates_Metallic.png
