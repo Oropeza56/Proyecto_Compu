@@ -1,5 +1,5 @@
 /*
-Proyecto - MAXIMILIANO QUIÑONES REYES 
+Proyecto - MAXIMILIANO QUIï¿½ONES REYES 
 */
 //para cargar imagen
 #define STB_IMAGE_IMPLEMENTATION
@@ -28,7 +28,7 @@ Proyecto - MAXIMILIANO QUIÑONES REYES
 #include"Model.h"
 #include "Skybox.h"
 
-//para iluminación
+//para iluminaciï¿½n
 #include "CommonValues.h"
 #include "DirectionalLight.h"
 #include "PointLight.h"
@@ -42,7 +42,7 @@ bool keyZPressed = false;
 bool luz1 = true;
 bool luz2 = true;
 
-//vehículo motorizado JUGGERNAUT
+//vehï¿½culo motorizado JUGGERNAUT
 float movJuggernautX, movJuggernautZ;
 float movJuggernautOffset;
 float rotLlantaJuggernaut;
@@ -59,6 +59,16 @@ std::vector<Shader> shaderList;
 
 Camera camera;
 
+//ShipLuffy
+Model ship_luffy;
+
+//ShipLuffy
+Model whale_luffy;
+
+//ShipLuffy
+Model luffy;
+
+
 //-----CASA-------
 Model casa_Kamino_M;
 
@@ -70,7 +80,7 @@ Texture cespedTexture;
 
 //--TEXTURAS MODELOS------
 // 
-//Vehículo -Terrestre- Juggernaut
+//Vehï¿½culo -Terrestre- Juggernaut
 Model juggernaut_M;
 Model juggernaut_llanta1_M;
 Model juggernaut_llanta2_M;
@@ -116,7 +126,7 @@ static const char* vShader = "shaders/shader_light.vert";
 static const char* fShader = "shaders/shader_light.frag";
 
 
-//función de calculo de normales por promedio de vértices 
+//funciï¿½n de calculo de normales por promedio de vï¿½rtices 
 void calcAverageNormals(unsigned int* indices, unsigned int indiceCount, GLfloat* vertices, unsigned int verticeCount,
 	unsigned int vLength, unsigned int normalOffset)
 {
@@ -246,6 +256,18 @@ int main()
 	casa_Kamino_M = Model();
 	casa_Kamino_M.LoadModel("Models/kamino.obj");
 
+	//---------------------SHIP LUFFY------------------
+	ship_luffy = Model();
+	ship_luffy.LoadModel("Models/model-ship/ship.obj");
+
+		//---------------------SHIP LUFFY------------------
+	whale_luffy = Model();
+	whale_luffy.LoadModel("Models/whale/whale2.obj");
+
+	//---------------------SHIP LUFFY------------------
+	luffy = Model();
+	luffy.LoadModel("Models/luffy/luffy2.obj");
+
 	dirtTexture = Texture("Textures/dirt.png");
 	dirtTexture.LoadTextureA();
 	pisoTexture = Texture("Textures/piso.tga");
@@ -312,7 +334,7 @@ int main()
 	Material_brillante = Material(4.0f, 256);
 	Material_opaco = Material(0.3f, 4);
 
-	//luz direccional, sólo 1 y siempre debe de existir
+	//luz direccional, sï¿½lo 1 y siempre debe de existir
 	mainLight = DirectionalLight(1.0f, 1.0f, 1.0f,
 		0.3f, 0.3f,
 		0.0f, 0.0f, -1.0f);   //0,0,-1
@@ -345,7 +367,7 @@ int main()
 
 	//*/
 
-	//------------giro para el vehículo motorizado JUGGERNAUT----------------------
+	//------------giro para el vehï¿½culo motorizado JUGGERNAUT----------------------
 	movJuggernautX = 0.0f;
 	movJuggernautZ = 0.0f;
 	movJuggernautOffset = 10.0f; //velocidad del vehiculo
@@ -411,7 +433,7 @@ int main()
 		uniformEyePosition = shaderList[0].GetEyePositionLocation();
 		uniformColor = shaderList[0].getColorLocation();
 		
-		//información en el shader de intensidad especular y brillo
+		//informaciï¿½n en el shader de intensidad especular y brillo
 		uniformSpecularIntensity = shaderList[0].GetSpecularIntensityLocation();
 		uniformShininess = shaderList[0].GetShininessLocation();
 
@@ -419,13 +441,13 @@ int main()
 		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera.calculateViewMatrix()));
 		glUniform3f(uniformEyePosition, camera.getCameraPosition().x, camera.getCameraPosition().y, camera.getCameraPosition().z);
 
-		// luz ligada a la cámara de tipo flash
-		//sirve para que en tiempo de ejecución (dentro del while) se cambien propiedades de la luz
+		// luz ligada a la cï¿½mara de tipo flash
+		//sirve para que en tiempo de ejecuciï¿½n (dentro del while) se cambien propiedades de la luz
 		glm::vec3 lowerLight = camera.getCameraPosition();
 		lowerLight.y -= 0.3f;
 		spotLights[0].SetFlash(lowerLight, camera.getCameraDirection());   //comentar y ver el resultado
 		
-		//información al shader de fuentes de iluminación
+		//informaciï¿½n al shader de fuentes de iluminaciï¿½n
 		shaderList[0].SetDirectionalLight(&mainLight);
 
 		glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -462,6 +484,31 @@ int main()
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		casa_Kamino_M.RenderModel();
 
+		//-------------------------SHIPLUFFY-------------------------------------
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(50.0f, 1.0f, 150.0f));
+		model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		ship_luffy.RenderModel();
+
+		//-------------------------SHIPLUFFY-------------------------------------
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(200.0f, -25.0f, 150.0f));
+		model = glm::scale(model, glm::vec3(7.0f, 7.0f, 7.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		whale_luffy.RenderModel();
+
+			//-------------------------SHIPLUFFY-------------------------------------
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(50.0f, 20.0f, 200.0f));
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		luffy.RenderModel();
+
+
 		//----------------LAMPARA----------------------------
 		if (true) {
 			model = model_piso;
@@ -471,13 +518,13 @@ int main()
 			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 			lampara_M.RenderModel();
 
-			// Obtener la posición de la lampara después de renderizarla
+			// Obtener la posiciï¿½n de la lampara despuï¿½s de renderizarla
 			glm::vec3 lampPos = glm::vec3(model[3][0] + 0.0f, model[3][1] + 22.0f, model[3][2] + 0.0f); // <- con esto hacemos que la luz siga al modelo
-			// Configurar la posición y la dirección de la luz
+			// Configurar la posiciï¿½n y la direcciï¿½n de la luz
 			pointLights[0].SetPosition(lampPos);
 		}
 
-		//----------------VEHÍCULO MOTORIZADO -> JUGGERNAUT----------------------------
+		//----------------VEHï¿½CULO MOTORIZADO -> JUGGERNAUT----------------------------
 		if (true) {
 			//Cabina principal
 			model = model_piso;
@@ -581,7 +628,7 @@ int main()
 		}
 
 
-		//------------------------MOVIMIENTO VEHÍCULO MOTORIZADO - JUGGERNAUT--------------------------
+		//------------------------MOVIMIENTO VEHï¿½CULO MOTORIZADO - JUGGERNAUT--------------------------
 		if (true) {
 			if (!ciclo_J)
 			{
