@@ -68,6 +68,9 @@ Model whale_luffy;
 //ShipLuffy
 Model luffy;
 
+//AceLuffy
+Model ace_luffy;
+
 
 //-----CASA-------
 Model casa_Kamino_M;
@@ -268,13 +271,17 @@ int main()
 	ship_luffy = Model();
 	ship_luffy.LoadModel("Models/model-ship/ship.obj");
 
-		//---------------------SHIP LUFFY------------------
+	//---------------------SHIP LUFFY------------------
 	whale_luffy = Model();
 	whale_luffy.LoadModel("Models/whale/whale2.obj");
 
 	//---------------------SHIP LUFFY------------------
 	luffy = Model();
 	luffy.LoadModel("Models/luffy/luffy2.obj");
+
+	//---------------------SHIP LUFFY------------------
+	ace_luffy = Model();
+	ace_luffy.LoadModel("Models/ace/ace.obj");
 
 	dirtTexture = Texture("Textures/dirt.png");
 	dirtTexture.LoadTextureA();
@@ -518,6 +525,14 @@ int main()
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		casa_Kamino_M.RenderModel();
 
+		//-------------------------Ace - LUFFY-------------------------------------
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(550.0f, -5.0f, 100.0f));
+		model = glm::scale(model, glm::vec3(20.0f, 20.0f, 20.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		ace_luffy.RenderModel();
+
 		//-------------------------SHIPLUFFY-------------------------------------
 		model = glm::mat4(1.0);
 		model = glm::translate(model, glm::vec3(50.0f, 1.0f, 150.0f));
@@ -534,7 +549,7 @@ int main()
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		whale_luffy.RenderModel();
 
-			//-------------------------SHIPLUFFY-------------------------------------
+		//-------------------------SHIPLUFFY-------------------------------------
 		model = glm::mat4(1.0);
 		model = glm::translate(model, glm::vec3(50.0f, 20.0f, 200.0f));
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));

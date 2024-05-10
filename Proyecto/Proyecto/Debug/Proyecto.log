@@ -2,6 +2,6 @@
   proyecto.cpp
 C:\Users\msm_0\OneDrive\Escritorio\Proyecto_Compu\Proyecto\Proyecto\Window.h(15,36): warning C4244: 'return': conversion from 'GLint' to 'GLfloat', possible loss of data
 C:\Users\msm_0\OneDrive\Escritorio\Proyecto_Compu\Proyecto\Proyecto\Window.h(16,37): warning C4244: 'return': conversion from 'GLint' to 'GLfloat', possible loss of data
-C:\Users\msm_0\OneDrive\Escritorio\Proyecto_Compu\Proyecto\Proyecto\proyecto.cpp(449,15): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-C:\Users\msm_0\OneDrive\Escritorio\Proyecto_Compu\Proyecto\Proyecto\proyecto.cpp(451,33): warning C4244: '+=': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\msm_0\OneDrive\Escritorio\Proyecto_Compu\Proyecto\Proyecto\proyecto.cpp(456,15): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+C:\Users\msm_0\OneDrive\Escritorio\Proyecto_Compu\Proyecto\Proyecto\proyecto.cpp(458,33): warning C4244: '+=': conversion from 'double' to 'GLfloat', possible loss of data
   Proyecto.vcxproj -> C:\Users\msm_0\OneDrive\Escritorio\Proyecto_Compu\Proyecto\Debug\Proyecto.exe
