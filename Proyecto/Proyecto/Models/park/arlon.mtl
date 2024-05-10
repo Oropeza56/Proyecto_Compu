@@ -1,0 +1,122 @@
+# Blender 3.6.4 MTL File: 'None'
+# www.blender.org
+
+newmtl lambert10SG
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lambert10SG_baseColor.jpg
+map_Ns lambert10SG_metallicRoughness_rough.jpg
+map_refl lambert10SG_metallicRoughness_metal.jpg
+map_Bump -bm 1.000000 lambert10SG_normal.jpg
+
+newmtl lambert11SG
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lambert11SG_baseColor.jpg
+map_Ns lambert11SG_metallicRoughness_rough.jpg
+map_refl lambert11SG_metallicRoughness_metal.jpg
+map_Bump -bm 1.000000 lambert11SG_normal.jpg
+
+newmtl lambert2SG
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lambert2SG_baseColor.jpg
+map_Ns lambert2SG_metallicRoughness_rough.jpg
+map_refl lambert2SG_metallicRoughness_metal.jpg
+map_Bump -bm 1.000000 lambert2SG_normal.jpg
+
+newmtl lambert3SG
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lambert3SG_baseColor.jpg
+map_Ns lambert3SG_metallicRoughness_rough.jpg
+map_refl lambert3SG_metallicRoughness_metal.jpg
+map_Bump -bm 1.000000 lambert3SG_normal.jpg
+
+newmtl lambert4SG
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lambert4SG_baseColor.jpg
+map_Ns lambert4SG_metallicRoughness_rough.jpg
+map_refl lambert4SG_metallicRoughness_metal.jpg
+map_Bump -bm 1.000000 lambert4SG_normal.jpg
+
+newmtl lambert5SG
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lambert5SG_baseColor.jpg
+map_Ns lambert5SG_metallicRoughness_rough.jpg
+map_refl lambert5SG_metallicRoughness_metal.jpg
+map_Bump -bm 1.000000 lambert5SG_normal.jpg
+
+newmtl lambert6SG
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lambert6SG_baseColor.jpg
+map_Ns lambert6SG_metallicRoughness_rough.jpg
+map_refl lambert6SG_metallicRoughness_metal.jpg
+map_Bump -bm 1.000000 lambert6SG_normal.jpg
+
+newmtl lambert7SG
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lambert7SG_baseColor.jpg
+map_Ns lambert7SG_metallicRoughness_rough.jpg
+map_refl lambert7SG_metallicRoughness_metal.jpg
+map_Bump -bm 1.000000 lambert7SG_normal.jpg
+
+newmtl lambert8SG
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lambert8SG_baseColor.jpg
+map_Ns lambert8SG_metallicRoughness_rough.jpg
+map_refl lambert8SG_metallicRoughness_metal.jpg
+map_Bump -bm 1.000000 lambert8SG_normal.jpg
+
+newmtl lambert9SG
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd lambert9SG_baseColor.jpg
+map_Ns lambert9SG_metallicRoughness_rough.jpg
+map_refl lambert9SG_metallicRoughness_metal.jpg
+map_Bump -bm 1.000000 lambert9SG_normal.jpg

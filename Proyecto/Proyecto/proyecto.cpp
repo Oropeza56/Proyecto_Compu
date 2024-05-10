@@ -70,7 +70,8 @@ Model luffy;
 
 //AceLuffy
 Model ace_luffy;
-
+//AceLuffy
+Model arlon_park_luffy;
 
 //-----CASA-------
 Model casa_Kamino_M;
@@ -282,6 +283,11 @@ int main()
 	//---------------------SHIP LUFFY------------------
 	ace_luffy = Model();
 	ace_luffy.LoadModel("Models/ace/ace.obj");
+
+
+	//---------------------SHIP LUFFY------------------
+	arlon_park_luffy = Model();
+	arlon_park_luffy.LoadModel("Models/park/arlon.obj");
 
 	dirtTexture = Texture("Textures/dirt.png");
 	dirtTexture.LoadTextureA();
@@ -544,8 +550,8 @@ int main()
 
 		//-------------------------SHIPLUFFY-------------------------------------
 		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(50.0f, 40.0f, 150.0f));
-		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		model = glm::translate(model, glm::vec3(30.0f, 40.0f, 190.0f));
+		model = glm::scale(model, glm::vec3(1.7f, 1.7f, 1.7f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		ship_luffy.RenderModel();
@@ -553,11 +559,19 @@ int main()
 
 		//-------------------------SHIPLUFFY-------------------------------------
 		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(50.0f, 65.0f, 200.0f));
-		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		model = glm::translate(model, glm::vec3(30.0f, 65.0f, 240.0f));
+		model = glm::scale(model, glm::vec3(1.7f, 1.7f, 1.7f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		luffy.RenderModel();
+
+		//-------------------------SHIPLUFFY-------------------------------------
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(-172.0f, 0.0f, 232.0f));
+		model = glm::scale(model, glm::vec3(2.5f, 2.5f, 2.5f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		arlon_park_luffy.RenderModel();
 
 
 		//----------------LAMPARA----------------------------
