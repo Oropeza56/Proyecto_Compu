@@ -1,5 +1,5 @@
 /*
-Proyecto - MAXIMILIANO QUI�ONES REYES 
+Proyecto - MAXIMILIANO QUIÑONES REYES 
 */
 //para cargar imagen
 #define STB_IMAGE_IMPLEMENTATION
@@ -28,7 +28,7 @@ Proyecto - MAXIMILIANO QUI�ONES REYES
 #include"Model.h"
 #include "Skybox.h"
 
-//para iluminaci�n
+//para iluminación
 #include "CommonValues.h"
 #include "DirectionalLight.h"
 #include "PointLight.h"
@@ -42,7 +42,7 @@ bool keyZPressed = false;
 bool luz1 = true;
 bool luz2 = true;
 
-//veh�culo motorizado JUGGERNAUT
+//vehículo motorizado JUGGERNAUT
 float movJuggernautX, movJuggernautZ;
 float movJuggernautOffset;
 float rotLlantaJuggernaut;
@@ -80,7 +80,7 @@ Texture cespedTexture;
 
 //--TEXTURAS MODELOS------
 // 
-//Veh�culo -Terrestre- Juggernaut
+//Vehículo -Terrestre- Juggernaut
 Model juggernaut_M;
 Model juggernaut_llanta1_M;
 Model juggernaut_llanta2_M;
@@ -96,8 +96,16 @@ Model juggernaut_torreta_lateral_M;
 Model juggernaut_torreta_frontal_M;
 Model juggernaut_torreta_trasera_M;
 
-//lampara
+Model casa_cupH_M;
+Model cupH_M;
+
+//objetos
 Model lampara_M;
+Model banca_M;
+Model puente_M;
+Model girasol_M;
+Model arbol_M;
+Model centro_M;
 
 Skybox skybox;
 
@@ -126,7 +134,7 @@ static const char* vShader = "shaders/shader_light.vert";
 static const char* fShader = "shaders/shader_light.frag";
 
 
-//funci�n de calculo de normales por promedio de v�rtices 
+//función de calculo de normales por promedio de vértices 
 void calcAverageNormals(unsigned int* indices, unsigned int indiceCount, GLfloat* vertices, unsigned int verticeCount,
 	unsigned int vLength, unsigned int normalOffset)
 {
@@ -320,6 +328,32 @@ int main()
 	juggernaut_torreta_trasera_M = Model();
 	juggernaut_torreta_trasera_M.LoadModel("Models/Models-Max/Juggernaut/juggernaut-torreta-trasera.obj");
 
+	//CUPHEAD
+	casa_cupH_M = Model();
+	casa_cupH_M.LoadModel("Models/casa_cuphead.obj");
+
+	cupH_M = Model();
+	cupH_M.LoadModel("Models/cupheadF.obj");
+
+	//objetos
+	puente_M = Model();
+	puente_M.LoadModel("Models/puente_M.obj");
+
+	//banca_M = Model();
+//banca_M.LoadModel("Models/banca_M.obj");
+
+	arbol_M = Model();
+	arbol_M.LoadModel("Models/arbol.obj");
+
+	girasol_M = Model(),
+	girasol_M.LoadModel("Models/girasol_M.obj");
+
+	centro_M = Model();
+	centro_M.LoadModel("Models/centro.obj");
+
+
+
+
 
 	std::vector<std::string> skyboxFaces;
 	skyboxFaces.push_back("Textures/Skybox/xochimilco_rt.jpg");
@@ -334,7 +368,7 @@ int main()
 	Material_brillante = Material(4.0f, 256);
 	Material_opaco = Material(0.3f, 4);
 
-	//luz direccional, s�lo 1 y siempre debe de existir
+	//luz direccional, sólo 1 y siempre debe de existir
 	mainLight = DirectionalLight(1.0f, 1.0f, 1.0f,
 		0.3f, 0.3f,
 		0.0f, 0.0f, -1.0f);   //0,0,-1
@@ -367,7 +401,7 @@ int main()
 
 	//*/
 
-	//------------giro para el veh�culo motorizado JUGGERNAUT----------------------
+	//------------giro para el vehículo motorizado JUGGERNAUT----------------------
 	movJuggernautX = 0.0f;
 	movJuggernautZ = 0.0f;
 	movJuggernautOffset = 10.0f; //velocidad del vehiculo
@@ -433,7 +467,7 @@ int main()
 		uniformEyePosition = shaderList[0].GetEyePositionLocation();
 		uniformColor = shaderList[0].getColorLocation();
 		
-		//informaci�n en el shader de intensidad especular y brillo
+		//información en el shader de intensidad especular y brillo
 		uniformSpecularIntensity = shaderList[0].GetSpecularIntensityLocation();
 		uniformShininess = shaderList[0].GetShininessLocation();
 
@@ -441,13 +475,13 @@ int main()
 		glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera.calculateViewMatrix()));
 		glUniform3f(uniformEyePosition, camera.getCameraPosition().x, camera.getCameraPosition().y, camera.getCameraPosition().z);
 
-		// luz ligada a la c�mara de tipo flash
-		//sirve para que en tiempo de ejecuci�n (dentro del while) se cambien propiedades de la luz
+		// luz ligada a la cámara de tipo flash
+		//sirve para que en tiempo de ejecución (dentro del while) se cambien propiedades de la luz
 		glm::vec3 lowerLight = camera.getCameraPosition();
 		lowerLight.y -= 0.3f;
 		spotLights[0].SetFlash(lowerLight, camera.getCameraDirection());   //comentar y ver el resultado
 		
-		//informaci�n al shader de fuentes de iluminaci�n
+		//información al shader de fuentes de iluminación
 		shaderList[0].SetDirectionalLight(&mainLight);
 
 		glm::vec3 color = glm::vec3(1.0f, 1.0f, 1.0f);
@@ -518,13 +552,13 @@ int main()
 			glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 			lampara_M.RenderModel();
 
-			// Obtener la posici�n de la lampara despu�s de renderizarla
+			// Obtener la posición de la lampara después de renderizarla
 			glm::vec3 lampPos = glm::vec3(model[3][0] + 0.0f, model[3][1] + 22.0f, model[3][2] + 0.0f); // <- con esto hacemos que la luz siga al modelo
-			// Configurar la posici�n y la direcci�n de la luz
+			// Configurar la posición y la dirección de la luz
 			pointLights[0].SetPosition(lampPos);
 		}
 
-		//----------------VEH�CULO MOTORIZADO -> JUGGERNAUT----------------------------
+		//----------------VEHÍCULO MOTORIZADO -> JUGGERNAUT----------------------------
 		if (true) {
 			//Cabina principal
 			model = model_piso;
@@ -628,7 +662,7 @@ int main()
 		}
 
 
-		//------------------------MOVIMIENTO VEH�CULO MOTORIZADO - JUGGERNAUT--------------------------
+		//------------------------MOVIMIENTO VEHÍCULO MOTORIZADO - JUGGERNAUT--------------------------
 		if (true) {
 			if (!ciclo_J)
 			{
@@ -743,7 +777,46 @@ int main()
 		}
 
 
-		shaderList[0].SetPointLights(pointLights, pointLightCount);
+		//__________________________________CUPHEAD________________________________________________________________________
+
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(250.0f, 10.0f, -199.0f));
+		model = glm::scale(model, glm::vec3(0.90f, 0.90f, 0.90f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		casa_cupH_M.RenderModel();
+
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(310.0f, 15.0f, 10.0f));
+		model = glm::scale(model, glm::vec3(3.90f, 3.90f, 3.90f));
+		model = glm::rotate(model, 180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		cupH_M.RenderModel();
+
+// ___________________________OBJETOS_________________
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(280.0f, 10.0f, 10.0f));
+		model = glm::scale(model, glm::vec3(.90f, .90f, .90f));
+		model = glm::rotate(model, 180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		puente_M.RenderModel();
+
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(280.0f, 10.0f, 30.0f));
+		model = glm::scale(model, glm::vec3(8.90f, 8.90f, 8.90f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		arbol_M.RenderModel();
+
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(540.0f, 10.0f, 570.0f));
+		model = glm::scale(model, glm::vec3(30.0f, 30.0f, 30.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		centro_M.RenderModel();
+	
 
 
 		glUseProgram(0);
