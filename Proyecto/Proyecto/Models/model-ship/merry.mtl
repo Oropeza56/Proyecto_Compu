@@ -1,0 +1,61 @@
+# Blender 3.6.4 MTL File: 'None'
+# www.blender.org
+
+newmtl M_Body_Base
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd M_Body_Base_baseColor.jpg
+map_Ns M_Body_Base_metallicRoughness_rough.jpg
+map_refl M_Body_Base_metallicRoughness_metal.jpg
+map_Bump -bm 1.000000 M_Body_Base_normal.jpg
+
+newmtl M_Body_Details
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd M_Body_Details_baseColor.jpg
+map_Ns M_Body_Details_metallicRoughness_rough.jpg
+map_refl M_Body_Details_metallicRoughness_metal.jpg
+map_Bump -bm 1.000000 M_Body_Details_normal.jpg
+
+newmtl M_Bushes
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 2
+map_Kd M_Bushes_baseColor.png
+map_Ns M_Bushes_metallicRoughness_rough.jpg
+map_refl M_Bushes_metallicRoughness_metal_scale0.jpg
+map_d M_Bushes_baseColor.png
+map_Bump -bm 1.000000 M_Bushes_normal.jpg
+
+newmtl M_Cloud
+Ns 0.690782
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd M_Cloud_baseColor.jpg
+map_Bump -bm 1.000000 M_Cloud_normal.jpg
+
+newmtl M_Sails_and_Ropes
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 2
+map_Kd M_Sails_and_Ropes_baseColor.png
+map_Ns M_Sails_and_Ropes_metallicRoughness_rough.jpg
+map_refl M_Sails_and_Ropes_metallicRoughness_metal_scale0.jpg
+map_d M_Sails_and_Ropes_baseColor.png
+map_Bump -bm 1.000000 M_Sails_and_Ropes_normal.jpg

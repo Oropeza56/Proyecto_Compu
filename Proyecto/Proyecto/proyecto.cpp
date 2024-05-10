@@ -269,7 +269,7 @@ int main()
 
 	//---------------------SHIP LUFFY------------------
 	ship_luffy = Model();
-	ship_luffy.LoadModel("Models/model-ship/ship.obj");
+	ship_luffy.LoadModel("Models/model-ship/merry.obj");
 
 	//---------------------SHIP LUFFY------------------
 	whale_luffy = Model();
@@ -533,13 +533,6 @@ int main()
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
 		ace_luffy.RenderModel();
 
-		//-------------------------SHIPLUFFY-------------------------------------
-		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(50.0f, 1.0f, 150.0f));
-		model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
-		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
-		ship_luffy.RenderModel();
 
 		//-------------------------SHIPLUFFY-------------------------------------
 		model = glm::mat4(1.0);
@@ -551,7 +544,16 @@ int main()
 
 		//-------------------------SHIPLUFFY-------------------------------------
 		model = glm::mat4(1.0);
-		model = glm::translate(model, glm::vec3(50.0f, 20.0f, 200.0f));
+		model = glm::translate(model, glm::vec3(50.0f, 40.0f, 150.0f));
+		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
+		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
+		ship_luffy.RenderModel();
+
+
+		//-------------------------SHIPLUFFY-------------------------------------
+		model = glm::mat4(1.0);
+		model = glm::translate(model, glm::vec3(50.0f, 65.0f, 200.0f));
 		model = glm::scale(model, glm::vec3(2.0f, 2.0f, 2.0f));
 		glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 		glUniform3fv(uniformColor, 1, glm::value_ptr(color));
